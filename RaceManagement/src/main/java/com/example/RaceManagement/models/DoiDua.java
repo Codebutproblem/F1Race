@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 
+
 @Entity
 @Table(name = "tblDoiDua")
 @Data
@@ -21,8 +22,13 @@ public class DoiDua {
     @Column(name = "moTa")
     private String moTa;
 
-    @Column(name = "tblQuanHuyenId")
-    private Long quanHuyenId;
+    @ManyToOne
+    @JoinColumn(name = "tblQuanHuyenId", insertable = false, updatable = false)
+    private QuanHuyen quanHuyen;
+
+    @ManyToOne
+    @JoinColumn(name = "taiKhoanNganHangId")
+    private TaiKhoanNganHang taiKhoanNganHang;
 
     @OneToMany(mappedBy = "doiDua")
     private List<GiaiThuongDoiDua> giaiThuongDoiDuas;

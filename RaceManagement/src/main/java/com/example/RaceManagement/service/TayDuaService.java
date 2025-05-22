@@ -7,4 +7,8 @@ import java.util.List;
 public interface TayDuaService {
 
     List<TayDua> getAllTayDua();
+
+    TayDua getTayDuaById(Long id);
+
+    List<TayDua> getAllTayDuaIdIfOwnGiaiThuongByGiaiDua(Long giaiDuaId);
 }

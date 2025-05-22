@@ -4,7 +4,6 @@ package com.example.RaceManagement.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
 
 @Entity
 @Table(name = "tblDiaChi")
@@ -26,6 +25,6 @@ public class DiaChi {
     private String dienThoai;
 
     @ManyToOne
-    @JoinColumn(name = "tblQuanHuyenId", insertable = false, updatable = false)
+    @JoinColumn(name = "quanHuyenId", insertable = false, updatable = false)
     private QuanHuyen quanHuyen;
 }

@@ -32,6 +32,6 @@ public class ThanhVien {
     private String ghiChu;
 
     @ManyToOne
-    @JoinColumn(name = "tblDiaChiId", insertable = false, updatable = false)
+    @JoinColumn(name = "diaChiId", insertable = false, updatable = false)
     private DiaChi diaChi;
 }

@@ -22,18 +22,24 @@ public class HopDongTaiTroRestController {
         return ResponseEntity.ok(hopDongTaiTroService.getAllHopDongTaiTro());
     }
 
-    @GetMapping("/nhataitro/{nhaTaiTroId}")
+    @GetMapping("/{id}")
+    public ResponseEntity<HopDongTaiTro> getHopDongById(@PathVariable Long id){
+        HopDongTaiTro hopDongTaiTro = hopDongTaiTroService.getHopDongTaiTroById(id);
+        if(hopDongTaiTro != null){
+            return ResponseEntity.ok(hopDongTaiTro);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/ntt/{nhaTaiTroId}")
     public ResponseEntity<List<HopDongTaiTro>> getDsHopDongByNhaTaiTroId(@PathVariable Long nhaTaiTroId){
         return ResponseEntity.ok(hopDongTaiTroService.getDsHopDongByNhaTaiTroId(nhaTaiTroId));
     }
 
     @PostMapping("/create")
     public ResponseEntity<HopDongTaiTro> createHopDong(@RequestBody HopDongTaiTro hopDongTaiTro){
-        HopDongTaiTro hopDongTaiTro1 = hopDongTaiTroService.createHopDongTaiTro(hopDongTaiTro);
-        if(hopDongTaiTro1 != null){
-            return ResponseEntity.status(HttpStatus.CREATED).body(hopDongTaiTro1);
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(hopDongTaiTroService.createHopDongTaiTro(hopDongTaiTro));
     }
 
     @DeleteMapping("/delete/{id}")
@@ -46,12 +52,7 @@ public class HopDongTaiTroRestController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<HopDongTaiTro> updateHopDong(@PathVariable Long id, String trangThai){
-        HopDongTaiTro hopDongTaiTro = hopDongTaiTroService.updateHopDongTaiTro(id, trangThai);
-        if(hopDongTaiTro != null){
-            return ResponseEntity.ok(hopDongTaiTro);
-        }else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<HopDongTaiTro> updateHopDong(@PathVariable Long id, @RequestBody HopDongTaiTro hopDongTaiTro){
+        return ResponseEntity.ok(hopDongTaiTroService.updateHopDongTaiTro(id, hopDongTaiTro));
     }
 }

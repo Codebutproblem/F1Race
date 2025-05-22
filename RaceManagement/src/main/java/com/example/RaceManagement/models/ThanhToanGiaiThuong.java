@@ -14,13 +14,10 @@ public class ThanhToanGiaiThuong {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "ThanhToanId", insertable = false, updatable = false)
+    @JoinColumn(name = "thanhToanId")
     private ThanhToan thanhToan;
 
-    @Column(name = "tblGiaiThuongId")
-    private Long giaiThuongId;
-
     @ManyToOne
-    @JoinColumn(name = "tblGiaiThuongId", insertable = false, updatable = false)
+    @JoinColumn(name = "giaiThuongId")
     private GiaiThuong giaiThuong;
 }

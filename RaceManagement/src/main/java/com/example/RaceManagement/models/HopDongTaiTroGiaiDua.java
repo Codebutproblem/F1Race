@@ -13,14 +13,11 @@ public class HopDongTaiTroGiaiDua {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "tblGiaiDuaId")
-    private Long giaiDuaId;
-
     @ManyToOne
-    @JoinColumn(name = "tblGiaiDuaId", insertable = false, updatable = false)
+    @JoinColumn(name = "giaiDuaId", insertable = false, updatable = false)
     private GiaiDua giaiDua;
 
     @ManyToOne
-    @JoinColumn(name = "tblHopDongTaiTroId", insertable = false, updatable = false)
+    @JoinColumn(name = "hopDongTaiTroId", insertable = false, updatable = false)
     private HopDongTaiTro hopDongTaiTro;
 }

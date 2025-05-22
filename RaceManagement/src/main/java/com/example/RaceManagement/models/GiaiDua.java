@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "tblGiaiDua")
@@ -27,23 +26,17 @@ public class GiaiDua {
     @Temporal(TemporalType.DATE)
     private Date ngayKetThuc;
 
-    @Column(name = "moTa", length = 255, nullable = true)
+    @Column(name = "moTa")
     private String moTa;
 
     @Column(name = "trangThai")
     private Integer trangThai;
 
-    @Column(name = "tblTinhThanhId")
-    private Long tinhThanhId;
-
-    @Column(name = "MuaGiaiId")
-    private Long muaGiaiId;
-
     @ManyToOne
-    @JoinColumn(name = "tblTinhThanhId", insertable = false, updatable = false)
+    @JoinColumn(name = "tinhThanhId", insertable = false, updatable = false)
     private TinhThanh tinhThanh;
 
     @ManyToOne
-    @JoinColumn(name = "MuaGiaiId", insertable = false, updatable = false)
+    @JoinColumn(name = "muaGiaiId", insertable = false, updatable = false)
     private MuaGiai muaGiai;
 }

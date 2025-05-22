@@ -1,5 +1,6 @@
 package com.example.RaceManagement.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,16 +21,14 @@ public class ThanhToan {
     private Integer soTien;
 
     @Column(name = "ngayThanhToan")
+    @JsonFormat(timezone = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date ngayThanhToan;
 
     @Column(name = "noiDung")
     private String noiDung;
 
-    @Column(name = "tblPhuongThucThanhToanId")
-    private Long phuongThucThanhToanId;
-
     @ManyToOne
-    @JoinColumn(name = "tblPhuongThucThanhToanId", insertable = false, updatable = false)
+    @JoinColumn(name = "phuongThucThanhToanId", insertable = false, updatable = false)
     private PhuongThucThanhToan phuongThucThanhToan;
 }

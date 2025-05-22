@@ -13,12 +13,11 @@ public class GiaiThuongTayDua {
     @Column(name = "id")
     private Long id;
 
-
     @ManyToOne
-    @JoinColumn(name = "tblGiaiThuongId", insertable = false, updatable = false)
+    @JoinColumn(name = "giaiThuongId", insertable = false, updatable = false)
     private GiaiThuong giaiThuong;
 
     @ManyToOne
-    @JoinColumn(name = "tblTayDuaId", insertable = false, updatable = false)
+    @JoinColumn(name = "tayDuaId", insertable = false, updatable = false)
     private TayDua tayDua;
 }

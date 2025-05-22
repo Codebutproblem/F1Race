@@ -19,8 +19,12 @@ public class TayDua {
     private Integer namKinhNghiem;
 
     @ManyToOne
-    @JoinColumn(name = "tblThanhVienId", insertable = false, updatable = false)
+    @JoinColumn(name = "thanhVienId", insertable = false, updatable = false)
     private ThanhVien thanhVien;
+
+    @ManyToOne
+    @JoinColumn(name = "taiKhoanNganHangId")
+    private TaiKhoanNganHang taiKhoanNganHang;
 
     @OneToMany(mappedBy = "tayDua")
     private List<GiaiThuongTayDua> giaiThuongTayDuas;

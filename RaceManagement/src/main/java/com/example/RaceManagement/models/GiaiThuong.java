@@ -21,27 +21,21 @@ public class GiaiThuong {
     @Column(name = "giaTri")
     private Integer giaTri;
 
-    @Column(name = "moTa", length = 255, nullable = true)
+    @Column(name = "moTa")
     private String moTa;
 
-    @Column(name = "teTayDuatoiThanhVienId")
-    private Long tayDuatoiThanhVienId;
-
-    @Column(name = "toiTuongNhan", length = 100)
+    @Column(name = "doiTuongNhan", length = 100)
     private String doiTuongNhan;
 
-    @Column(name = "tblHopDongTaiTroId")
-    private Long hopDongTaiTroId;
-
     @ManyToOne
-    @JoinColumn(name = "tblHopDongTaiTroId", insertable = false, updatable = false)
+    @JoinColumn(name = "hopDongTaiTroId", insertable = false, updatable = false)
     private HopDongTaiTro hopDongTaiTro;
 
 
-    @Column(name = "tblGiaiDuaId")
-    private Long giaiDuaId;
-
     @ManyToOne
-    @JoinColumn(name = "tblGiaiDuaId", insertable = false, updatable = false)
+    @JoinColumn(name = "giaiDuaId", insertable = false, updatable = false)
     private GiaiDua giaiDua;
+
+    @OneToMany(mappedBy = "giaiThuong")
+    private List<ThanhToanGiaiThuong> thanhToanGiaiThuongs;
 }

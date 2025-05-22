@@ -23,6 +23,6 @@ public class NhanVien {
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "tblThanhVienId", insertable = false, updatable = false)
+    @JoinColumn(name = "thanhVienId", insertable = false, updatable = false)
     private ThanhVien thanhVien;
 }

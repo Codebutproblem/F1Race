@@ -22,6 +22,6 @@ public class QuanHuyen {
     private String moTa;
 
     @ManyToOne
-    @JoinColumn(name = "tblTinhThanhId", insertable = false, updatable = false)
+    @JoinColumn(name = "tinhThanhId", insertable = false, updatable = false)
     private TinhThanh tinhThanh;
 }

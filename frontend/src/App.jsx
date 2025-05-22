@@ -1,122 +1,34 @@
-// src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-
-// Import pages
-import LoginPage from './pages/LoginPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import NhaTaiTroPage from './pages/NhaTaiTroPage';
-import ChiTietNhaTaiTroPage from './pages/ChiTietNhaTaiTroPage';
-import HopDongPage from './pages/HopDongPage';
-import ChiTietHopDongPage from './pages/ChiTietHopDongPage';
-import GiaiThuongPage from './pages/GiaiThuongPage';
-import GiaiThuongDoiDuaPage from './pages/GiaiThuongDoiDuaPage';
-import GiaiThuongTayDuaPage from './pages/GiaiThuongTayDuaPage';
-
-// Protected route component
-const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-  
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
-  
-  return children;
-};
+import SponsorListPage from './pages/sponsors/SponsorListPage';
+import SponsorDetailPage from './pages/sponsors/SponsorDetailPage';
+import ContractDetailPage from './pages/sponsors/ContractDetailPage';
+import SeasonListPage from './pages/awards/SeasonListPage';
+import SeasonDetailPage from './pages/awards/SeasonDetailPage';
+import RaceAwardListPage from './pages/awards/RaceAwardListPage';
+import RacerAwardDetailPage from './pages/awards/RacerAwardDetailPage';
+import TeamAwardDetailPage from './pages/awards/TeamAwardDetailPage';
+import Layout from './components/common/Layout';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          
-          <Route 
-            path="/home" 
-            element={
-              <ProtectedRoute>
-                <HomePage />
-              </ProtectedRoute>
-            } 
-          />
-          
-          <Route 
-            path="/nhataitro" 
-            element={
-              <ProtectedRoute>
-                <NhaTaiTroPage />
-              </ProtectedRoute>
-            } 
-          />
-          
-          <Route 
-            path="/chitietnhataitro/:id" 
-            element={
-              <ProtectedRoute>
-                <ChiTietNhaTaiTroPage />
-              </ProtectedRoute>
-            } 
-          />
-          
-          <Route 
-            path="/hopdong" 
-            element={
-              <ProtectedRoute>
-                <HopDongPage />
-              </ProtectedRoute>
-            } 
-          />
-          
-          <Route 
-            path="/chitiethopdong/:id" 
-            element={
-              <ProtectedRoute>
-                <ChiTietHopDongPage />
-              </ProtectedRoute>
-            } 
-          />
-          
-          <Route 
-            path="/giaithuong" 
-            element={
-              <ProtectedRoute>
-                <GiaiThuongPage />
-              </ProtectedRoute>
-            } 
-          />
-          
-          {/* New prize detail and payment routes */}
-          <Route 
-            path="/giaithuongdoidua/:id" 
-            element={
-              <ProtectedRoute>
-                <GiaiThuongDoiDuaPage />
-              </ProtectedRoute>
-            } 
-          />
-          
-          <Route 
-            path="/giaithuongtaydua/:id" 
-            element={
-              <ProtectedRoute>
-                <GiaiThuongTayDuaPage />
-              </ProtectedRoute>
-            } 
-          />
-          
-          {/* Redirect root to login or home based on auth status */}
-          <Route 
-            path="/" 
-            element={
-              localStorage.getItem('isAuthenticated') === 'true' 
-                ? <Navigate to="/home" /> 
-                : <Navigate to="/login" />
-            } 
-          />
-        </Routes>
-      </Router>
-    </AuthProvider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout><HomePage /></Layout>} />
+        
+        {/* Sponsor routes */}
+        <Route path="/sponsors" element={<Layout><SponsorListPage /></Layout>} />
+        <Route path="/sponsors/:id" element={<Layout><SponsorDetailPage /></Layout>} />
+        <Route path="/contracts/:id" element={<Layout><ContractDetailPage /></Layout>} />
+        
+        {/* Award management routes */}
+        <Route path="/seasons" element={<Layout><SeasonListPage /></Layout>} />
+        <Route path="/seasons/:id" element={<Layout><SeasonDetailPage /></Layout>} />
+        <Route path="/races/:raceId/awards" element={<Layout><RaceAwardListPage /></Layout>} />
+        <Route path="/race-awards/racer/:id" element={<Layout><RacerAwardDetailPage /></Layout>} />
+        <Route path="/race-awards/team/:id" element={<Layout><TeamAwardDetailPage /></Layout>} />
+      </Routes>
+    </Router>
   );
 }
 
